@@ -13,6 +13,11 @@
 		1B9763B72BD3D348001BEB10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9763B52BD3D348001BEB10 /* Main.storyboard */; };
 		1B9763B92BD3D349001BEB10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B9763B82BD3D349001BEB10 /* Assets.xcassets */; };
 		1B9763BC2BD3D349001BEB10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9763BA2BD3D349001BEB10 /* LaunchScreen.storyboard */; };
+		1B9763C42BD3DB20001BEB10 /* InjuredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763C32BD3DB20001BEB10 /* InjuredViewController.swift */; };
+		1B9763C62BD3DB30001BEB10 /* RescuerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763C52BD3DB30001BEB10 /* RescuerViewController.swift */; };
+		1B9763C92BD3DCE6001BEB10 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763C82BD3DCE6001BEB10 /* TabBarController.swift */; };
+		1B9763CB2BD3DFDA001BEB10 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763CA2BD3DFDA001BEB10 /* ProfileViewController.swift */; };
+		1B9763CD2BD3EF7A001BEB10 /* InjuredTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763CC2BD3EF7A001BEB10 /* InjuredTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		1B9763B82BD3D349001BEB10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B9763BB2BD3D349001BEB10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B9763BD2BD3D349001BEB10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B9763C32BD3DB20001BEB10 /* InjuredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjuredViewController.swift; sourceTree = "<group>"; };
+		1B9763C52BD3DB30001BEB10 /* RescuerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescuerViewController.swift; sourceTree = "<group>"; };
+		1B9763C82BD3DCE6001BEB10 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		1B9763CA2BD3DFDA001BEB10 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1B9763CC2BD3EF7A001BEB10 /* InjuredTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjuredTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,28 @@
 		1B9763AE2BD3D348001BEB10 /* DisasterAssistance */ = {
 			isa = PBXGroup;
 			children = (
+				1B9763C72BD3DB39001BEB10 /* ViewControllers */,
 				1B9763AF2BD3D348001BEB10 /* AppDelegate.swift */,
 				1B9763B12BD3D348001BEB10 /* SceneDelegate.swift */,
-				1B9763B32BD3D348001BEB10 /* ViewController.swift */,
 				1B9763B52BD3D348001BEB10 /* Main.storyboard */,
 				1B9763B82BD3D349001BEB10 /* Assets.xcassets */,
 				1B9763BA2BD3D349001BEB10 /* LaunchScreen.storyboard */,
 				1B9763BD2BD3D349001BEB10 /* Info.plist */,
 			);
 			path = DisasterAssistance;
+			sourceTree = "<group>";
+		};
+		1B9763C72BD3DB39001BEB10 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1B9763B32BD3D348001BEB10 /* ViewController.swift */,
+				1B9763C32BD3DB20001BEB10 /* InjuredViewController.swift */,
+				1B9763C52BD3DB30001BEB10 /* RescuerViewController.swift */,
+				1B9763C82BD3DCE6001BEB10 /* TabBarController.swift */,
+				1B9763CC2BD3EF7A001BEB10 /* InjuredTabBarController.swift */,
+				1B9763CA2BD3DFDA001BEB10 /* ProfileViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +162,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B9763B42BD3D348001BEB10 /* ViewController.swift in Sources */,
+				1B9763CD2BD3EF7A001BEB10 /* InjuredTabBarController.swift in Sources */,
+				1B9763C92BD3DCE6001BEB10 /* TabBarController.swift in Sources */,
 				1B9763B02BD3D348001BEB10 /* AppDelegate.swift in Sources */,
+				1B9763C42BD3DB20001BEB10 /* InjuredViewController.swift in Sources */,
+				1B9763CB2BD3DFDA001BEB10 /* ProfileViewController.swift in Sources */,
+				1B9763C62BD3DB30001BEB10 /* RescuerViewController.swift in Sources */,
 				1B9763B22BD3D348001BEB10 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

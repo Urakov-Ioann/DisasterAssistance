@@ -30,11 +30,17 @@
                                 <rect key="frame" x="160.33333333333334" y="471.66666666666669" width="72.666666666666657" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Войти"/>
+                                <connections>
+                                    <action selector="loginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pIm-EX-io4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dU3-QX-E1K">
                                 <rect key="frame" x="118" y="703" width="157" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Я пострадавший"/>
+                                <connections>
+                                    <action selector="injuredButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CR4-kL-LCV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -56,11 +62,66 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1054.1984732824426" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1047" y="-27"/>
+        </scene>
+        <!--Injured View Controller-->
+        <scene sceneID="EQp-ge-nCY">
+            <objects>
+                <viewController storyboardIdentifier="InjuredVC" id="Bdm-sU-Cme" customClass="InjuredViewController" customModule="DisasterAssistance" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Kz-Wp-oWX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxb-v6-25V">
+                                <rect key="frame" x="123" y="561" width="147" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Сообщать о ЧС"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MJV-oj-0eN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BXG-mR-Xuq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KE1-9u-mYd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2195" y="416"/>
+        </scene>
+        <!--Rescuer View Controller-->
+        <scene sceneID="8hc-Fd-yrg">
+            <objects>
+                <viewController storyboardIdentifier="RescuerVC" id="qcE-7X-eOL" customClass="RescuerViewController" customModule="DisasterAssistance" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fSb-mE-xxk">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="5p4-LF-9L7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ihA-ra-khD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3329" y="-864"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="If8-v4-UEe">
+            <objects>
+                <viewController storyboardIdentifier="ProfileVC" id="AIx-Np-ES4" customClass="ProfileViewController" customModule="DisasterAssistance" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z0E-1e-u4h">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="NmT-IY-Ft1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4zb-Sh-qIc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4115" y="295"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="inQ-sj-KcT">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8aK-k7-yfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HFK-CV-7G9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KRH-Nk-td3">
@@ -72,7 +133,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="FXU-JW-duj"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8aK-k7-yfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
         </scene>
