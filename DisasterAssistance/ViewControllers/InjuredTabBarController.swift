@@ -2,7 +2,7 @@
 //  InjuredTabBarController.swift
 //  DisasterAssistance
 //
-//  Created by Максим Косников on 20.04.2024.
+//  Created by Иоанн Ураков on 20.04.2024.
 //
 
 import UIKit

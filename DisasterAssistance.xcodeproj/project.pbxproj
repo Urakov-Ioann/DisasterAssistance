@@ -43,6 +43,7 @@
 		1B9D6E042BD6541F00E63C6E /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9D6E032BD6541F00E63C6E /* FirebaseService.swift */; };
 		1B9D6E062BD654FE00E63C6E /* FirebaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9D6E052BD654FE00E63C6E /* FirebaseRepository.swift */; };
 		1B9D6E082BD6A68A00E63C6E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B9D6E072BD6A68A00E63C6E /* GoogleService-Info.plist */; };
+		1B9D6E0A2BD6AAFC00E63C6E /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9D6E092BD6AAFC00E63C6E /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		1B9D6E032BD6541F00E63C6E /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		1B9D6E052BD654FE00E63C6E /* FirebaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRepository.swift; sourceTree = "<group>"; };
 		1B9D6E072BD6A68A00E63C6E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1B9D6E092BD6AAFC00E63C6E /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				1B9D6E032BD6541F00E63C6E /* FirebaseService.swift */,
+				1B9D6E092BD6AAFC00E63C6E /* LocationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				1B9763B02BD3D348001BEB10 /* AppDelegate.swift in Sources */,
 				1B9D6E042BD6541F00E63C6E /* FirebaseService.swift in Sources */,
 				1B9763C42BD3DB20001BEB10 /* InjuredViewController.swift in Sources */,
+				1B9D6E0A2BD6AAFC00E63C6E /* LocationService.swift in Sources */,
 				1B9763CB2BD3DFDA001BEB10 /* ProfileViewController.swift in Sources */,
 				1B9763C62BD3DB30001BEB10 /* RescuerViewController.swift in Sources */,
 				1B9D6E062BD654FE00E63C6E /* FirebaseRepository.swift in Sources */,
@@ -411,8 +415,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4A6Q5M35JJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DisasterAssistance/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для осуществления помощи, спасателям необходимо знать вашу геопозицию";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для осуществления помощи, спасателям необходимо знать вашу геопозицию";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -438,8 +445,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4A6Q5M35JJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DisasterAssistance/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для осуществления помощи, спасателям необходимо знать вашу геопозицию";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для осуществления помощи, спасателям необходимо знать вашу геопозицию";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

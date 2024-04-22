@@ -73,10 +73,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxb-v6-25V">
-                                <rect key="frame" x="123" y="561" width="147" height="35"/>
+                                <rect key="frame" x="123" y="561" width="148" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Сообщать о ЧС"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Сообщить о ЧС"/>
+                                <connections>
+                                    <action selector="reportButtonAction:" destination="Bdm-sU-Cme" eventType="touchUpInside" id="emq-fW-W5q"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MJV-oj-0eN"/>
@@ -121,7 +124,6 @@
         <!--Navigation Controller-->
         <scene sceneID="inQ-sj-KcT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8aK-k7-yfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HFK-CV-7G9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KRH-Nk-td3">
@@ -133,6 +135,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="FXU-JW-duj"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8aK-k7-yfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
         </scene>
