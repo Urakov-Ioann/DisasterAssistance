@@ -21,6 +21,11 @@ class InjuredViewController: UIViewController {
         guard let cllocation = locationService.getCurrentLocation() else { return }
         let location = Location(latitude: cllocation.coordinate.latitude, longitude: cllocation.coordinate.longitude)
         
+//        for _ in 0...20 {
+//            let location = Location(latitude: Double.random(in: 45.06...46), longitude: Double.random(in: 39...41))
+//            self.sendLocation(locModel: location)
+//        }
+        
         self.sendLocation(locModel: location)
     }
     

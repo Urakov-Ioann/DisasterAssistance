@@ -7,14 +7,15 @@
 
 import UIKit
 import FirebaseCore
+import YandexMapsMobile
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        YMKMapKit.setApiKey("6baf250a-9db0-4cb1-967c-8000fbbad2a9")
+        YMKMapKit.sharedInstance()
         return true
     }
 
