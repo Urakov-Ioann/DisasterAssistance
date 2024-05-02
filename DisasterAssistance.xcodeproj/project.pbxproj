@@ -45,6 +45,7 @@
 		1B9D6E082BD6A68A00E63C6E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B9D6E072BD6A68A00E63C6E /* GoogleService-Info.plist */; };
 		1B9D6E0A2BD6AAFC00E63C6E /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9D6E092BD6AAFC00E63C6E /* LocationService.swift */; };
 		1B9D6E0D2BD7A5A500E63C6E /* YBaseMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9D6E0C2BD7A5A500E63C6E /* YBaseMapView.swift */; };
+		1B9D6E0F2BDD3E8D00E63C6E /* LandscapeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9D6E0E2BDD3E8D00E63C6E /* LandscapeHelper.swift */; };
 		A1613B6D27A4C233E94CDD28 /* Pods_DisasterAssistance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524E2CD7A15FDFF5E8934FDD /* Pods_DisasterAssistance.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		1B9D6E072BD6A68A00E63C6E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B9D6E092BD6AAFC00E63C6E /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		1B9D6E0C2BD7A5A500E63C6E /* YBaseMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBaseMapView.swift; sourceTree = "<group>"; };
+		1B9D6E0E2BDD3E8D00E63C6E /* LandscapeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeHelper.swift; sourceTree = "<group>"; };
 		244623F84D5319E197254034 /* Pods-DisasterAssistance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DisasterAssistance.debug.xcconfig"; path = "Target Support Files/Pods-DisasterAssistance/Pods-DisasterAssistance.debug.xcconfig"; sourceTree = "<group>"; };
 		524E2CD7A15FDFF5E8934FDD /* Pods_DisasterAssistance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DisasterAssistance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F83FEE2FABC81FD7C8196204 /* Pods-DisasterAssistance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DisasterAssistance.release.xcconfig"; path = "Target Support Files/Pods-DisasterAssistance/Pods-DisasterAssistance.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		1B9763AE2BD3D348001BEB10 /* DisasterAssistance */ = {
 			isa = PBXGroup;
 			children = (
+				1B9D6E102BDD3E9200E63C6E /* Helpers */,
 				1B9D6E0B2BD7A59700E63C6E /* Views */,
 				1B9D6E022BD6540E00E63C6E /* Services */,
 				1B9763C72BD3DB39001BEB10 /* ViewControllers */,
@@ -170,6 +173,14 @@
 				1B9D6E0C2BD7A5A500E63C6E /* YBaseMapView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1B9D6E102BDD3E9200E63C6E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1B9D6E0E2BDD3E8D00E63C6E /* LandscapeHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8D6FF5598223D2467D5510FD /* Frameworks */ = {
@@ -344,6 +355,7 @@
 				1B9D6E062BD654FE00E63C6E /* FirebaseRepository.swift in Sources */,
 				1B9D6E0D2BD7A5A500E63C6E /* YBaseMapView.swift in Sources */,
 				1B9763B22BD3D348001BEB10 /* SceneDelegate.swift in Sources */,
+				1B9D6E0F2BDD3E8D00E63C6E /* LandscapeHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

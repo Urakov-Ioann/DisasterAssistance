@@ -43,15 +43,6 @@ extension FirebaseService: FirebaseServiceProtocol {
     ) {
         let db = configureFB()
         let locRef = db.collection("Locations").document(UUID().uuidString)
-//        locRef.setData(locModel) { error in
-//            if let error = error {
-//                print("FirebaseService setLocation: Error writing document: \(error)")
-//                completion(.failure(error))
-//            } else {
-//                print("FirebaseService setLocation: Document successfully written!")
-//                completion(.success(""))
-//            }
-//        }
         do {
             try locRef.setData(from: locModel) { error in
                 if let error = error {

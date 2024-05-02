@@ -12,7 +12,7 @@ class RescuerViewController: UIViewController {
     
     // MARK: - Dependencies
     
-    private let drivingRouter: YMKDrivingRouter = YMKDirections.sharedInstance().createDrivingRouter(withType: .online)
+    private let landscapeHelper = LandscapeHelper()
     private let firestoreRepository: FirebaseRepositoryProtocol = FirebaseRepository(firebaseService: FirebaseService() as FirebaseServiceProtocol)
     
     // MARK: - UI Components
@@ -30,10 +30,11 @@ class RescuerViewController: UIViewController {
     }()
     
     private let landscapeSegmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["Город", "Лес", "Горы", "Пустыня", "Все"])
+        let segmentedControl = UISegmentedControl(items: ["Город", "Лес", "Горы", "Все"])
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.selectedSegmentIndex = 4
+        segmentedControl.selectedSegmentIndex = 3
         segmentedControl.backgroundColor = .white
+        segmentedControl.addTarget(self, action: #selector(didSelectSegmenta(control: )), for: .valueChanged)
         return segmentedControl
     }()
     
@@ -41,6 +42,8 @@ class RescuerViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let controlItems: [LandscapeType] = [.city, .forest, .mountain, .all]
+    private let drivingRouter: YMKDrivingRouter = YMKDirections.sharedInstance().createDrivingRouter(withType: .online)
     private let drivingOptions: YMKDrivingOptions = {
         let options = YMKDrivingOptions()
         options.routesCount = 100
@@ -48,7 +51,9 @@ class RescuerViewController: UIViewController {
     }()
     private var drivingSession: YMKDrivingSession?
     private var points = [YMKRequestPoint]()
+    private var currentPoints = [YMKRequestPoint]()
     private var routesCollection: YMKMapObjectCollection!
+    private var placemarks = [YMKPlacemarkMapObject]()
     private var routesToggle = false
     
     // MARK: - Lifecycle
@@ -62,14 +67,17 @@ class RescuerViewController: UIViewController {
             switch result {
             case .success(let locationsModel):
                 guard let locations = locationsModel else { return }
-                points.append(YMKRequestPoint(point: YMKPoint(latitude: 45, longitude: 40), type: .waypoint, pointContext: nil, drivingArrivalPointId: nil))
                 for coordinate in locations {
                     let point = YMKPoint(latitude: coordinate.latitude, longitude: coordinate.longitude)
                     self.addPlacemark(mapView.mapWindow.map, point: point)
-                    points.append(YMKRequestPoint(point: point, type: .viapoint, pointContext: nil, drivingArrivalPointId: nil))
+                    points.append(YMKRequestPoint(
+                        point: point,
+                        type: .viapoint,
+                        pointContext: nil,
+                        drivingArrivalPointId: nil)
+                    )
                 }
-                points.append(YMKRequestPoint(point: YMKPoint(latitude: 45.065, longitude: 39), type: .waypoint, pointContext: nil, drivingArrivalPointId: nil))
-                
+                currentPoints = points
             case .failure(let failure):
                 print(failure)
             }
@@ -81,24 +89,9 @@ class RescuerViewController: UIViewController {
     private func addPlacemark(_ map: YMKMap, point: YMKPoint) {
         let image = UIImage(systemName: "circle") ?? UIImage()
         let placemark = map.mapObjects.addPlacemark()
+        placemarks.append(placemark)
         placemark.geometry = point
         placemark.setIconWith(image)
-    }
-    
-    @objc private func createRoute() {
-        routesToggle.toggle()
-        if routesToggle {
-            drivingSession = drivingRouter.requestRoutes(
-                with: points,
-                drivingOptions: drivingOptions,
-                vehicleOptions: YMKDrivingVehicleOptions(),
-                routeHandler: drivingRouteHandler
-            )
-            showRouteButton.setTitle("Скрыть маршруты спасения", for: .normal)
-        } else {
-            routesCollection.clear()
-            showRouteButton.setTitle("Показать маршруты спасения", for: .normal)
-        }
     }
     
     private func drivingRouteHandler(drivingRoutes: [YMKDrivingRoute]?, error: Error?) {
@@ -131,6 +124,46 @@ class RescuerViewController: UIViewController {
         polylineMapObject.setStrokeColorWith(.gray)
         polylineMapObject.outlineWidth = 1.0
         polylineMapObject.outlineColor = .black
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func createRoute() {
+        routesToggle.toggle()
+        if routesToggle {
+            drivingSession = drivingRouter.requestRoutes(
+                with: currentPoints,
+                drivingOptions: drivingOptions,
+                vehicleOptions: YMKDrivingVehicleOptions(),
+                routeHandler: drivingRouteHandler
+            )
+            showRouteButton.setTitle("Скрыть маршруты спасения", for: .normal)
+        } else {
+            routesCollection.clear()
+            showRouteButton.setTitle("Показать маршруты спасения", for: .normal)
+        }
+    }
+    
+    @objc
+    private func didSelectSegmenta(control: UISegmentedControl) {
+        for object in placemarks {
+            if object.isValid  {
+                mapView.mapWindow.map.mapObjects.remove(with: object)
+            }
+        }
+        
+        currentPoints = []
+        for point in points {
+            let coordinate = Location(latitude: point.point.latitude, longitude: point.point.longitude)
+            if landscapeHelper.isCoordinateInLandscap(controlItems[control.selectedSegmentIndex], coordinate: coordinate) {
+                currentPoints.append(point)
+                addPlacemark(mapView.mapWindow.map, point: point.point)
+            }
+        }
+        
+        currentPoints[0] = YMKRequestPoint(point: currentPoints[0].point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil)
+        currentPoints[currentPoints.count - 1] = YMKRequestPoint(point: currentPoints[currentPoints.count - 1].point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil)
     }
 }
 

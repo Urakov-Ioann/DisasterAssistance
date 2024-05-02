@@ -26,6 +26,21 @@ class InjuredViewController: UIViewController {
 //            self.sendLocation(locModel: location)
 //        }
         
+//        let locations = [
+//            Location(latitude: 55.758938036209614, longitude: 37.643678622386545), // Moscow
+//            Location(latitude: 55.82251901906957, longitude: 37.612010524127555), // Moscow
+//            Location(latitude: 55.77714130014583, longitude: 37.7506956710279), // Moscow
+//            Location(latitude: 60.45343191228787, longitude: 59.2308017757992), // Mountains
+//            Location(latitude: 60.28263967508878, longitude: 59.133942636342894), // Mountains
+//            Location(latitude: 56.51280988140567, longitude: 32.87656229282573), // Forest
+//            
+//        ]
+//        
+//        for i in locations {
+//            self.sendLocation(locModel: i)
+//        }
+        
+        
         self.sendLocation(locModel: location)
     }
     
