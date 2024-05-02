@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Profile"
+        title = "Профиль"
         tableView.dataSource = self
         tableView.delegate = self
     }

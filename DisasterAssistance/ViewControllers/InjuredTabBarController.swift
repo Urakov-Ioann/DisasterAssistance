@@ -30,8 +30,12 @@ private extension InjuredTabBarController {
         let navInjuredViewController = UINavigationController(rootViewController: injuredViewController)
         let navProfileViewController = UINavigationController(rootViewController: profileViewController)
         
-        navInjuredViewController.tabBarItem.title = "Injured"
-        navProfileViewController.tabBarItem.title = "Profile"
+        navInjuredViewController.tabBarItem.title = "Экран пострадавшего"
+        navInjuredViewController.tabBarItem.image = UIImage(systemName: "figure.wave")
+        navProfileViewController.tabBarItem.title = "Профиль"
+        navProfileViewController.tabBarItem.image = UIImage(systemName: "person")
+        
+        tabBar.tintColor = .black
         
         viewControllers = [
             navInjuredViewController,

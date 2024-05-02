@@ -15,7 +15,7 @@ class InjuredViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Injured"
+        title = "Экран пострадавшего"
     }
     
     @IBAction func reportButtonAction(_ sender: Any) {

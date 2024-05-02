@@ -88,7 +88,11 @@ class RescuerViewController: UIViewController {
     // MARK: - Private methods
     
     private func addPlacemark(_ map: YMKMap, point: YMKPoint) {
-        let image = UIImage(systemName: "circle") ?? UIImage()
+        let image1 = UIImage(named: "whiteCircle") ?? UIImage()
+        let placemark1 = map.mapObjects.addPlacemark()
+        placemark1.geometry = point
+        placemark1.setIconWith(image1)
+        let image = UIImage(named: "greenCircle") ?? UIImage()
         let placemark = map.mapObjects.addPlacemark()
         placemarks.append(placemark)
         placemark.geometry = point
@@ -112,8 +116,12 @@ class RescuerViewController: UIViewController {
         
         let route = drivingRoutes.sorted(by: { $0.metadata.weight.time.value < $1.metadata.weight.time.value })
         
-        print("\n\n\nFIRST\n\n\n \(route.first?.metadata.weight.time.value)")
-        print("\n\n\nLAST\n\n\n \(route.last?.metadata.weight.time.value)")
+        guard route.isEmpty == false else {
+            let action = ActionModel(title: "Понятно", style: .cancel, actionBlock: nil)
+            let alertModel = AlertModel(title: "Ошибка", message: "В данной местности невозможно построить маршрут", preferredStyle: .alert, actions: [action])
+            alertManager.showAlert(from: self, alertModel: alertModel)
+            return
+        }
         
         guard let polyline = route.first?.geometry else { return }
         
@@ -128,10 +136,8 @@ class RescuerViewController: UIViewController {
     private func drawRoute(polyline: YMKPolyline) {
         
         let polylineMapObject = routesCollection.addPolyline(with: polyline)
-        polylineMapObject.strokeWidth = 5.0
-        polylineMapObject.setStrokeColorWith(.gray)
-        polylineMapObject.outlineWidth = 1.0
-        polylineMapObject.outlineColor = .black
+        polylineMapObject.strokeWidth = 4.0
+        polylineMapObject.setStrokeColorWith(.systemGreen)
     }
     
     // MARK: - Actions

@@ -31,8 +31,12 @@ private extension TabBarController {
         let navRescViewController = UINavigationController(rootViewController: rescuerViewController)
         let navProfileViewController = UINavigationController(rootViewController: profileViewController)
         
-        navRescViewController.tabBarItem.title = "Rescuer"
-        navProfileViewController.tabBarItem.title = "Profile"
+        navRescViewController.tabBarItem.title = "Карта бедствий"
+        navRescViewController.tabBarItem.image = UIImage(systemName: "map")
+        navProfileViewController.tabBarItem.title = "Профиль"
+        navProfileViewController.tabBarItem.image = UIImage(systemName: "person")
+        
+        tabBar.tintColor = .black
         
         viewControllers = [
             navRescViewController,
