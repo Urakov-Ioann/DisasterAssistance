@@ -11,6 +11,7 @@ class InjuredViewController: UIViewController {
 
     private let firestoreRepository: FirebaseRepositoryProtocol = FirebaseRepository(firebaseService: FirebaseService() as FirebaseServiceProtocol)
     private let locationService: LocationServiceProtocol = LocationService()
+    private let alertManager: AlertManagerProtocol = AlertManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,22 +46,18 @@ class InjuredViewController: UIViewController {
     }
     
     private func sendLocation(locModel: Location) {
-        firestoreRepository.setLocation(locModel: locModel) { result in
+        firestoreRepository.setLocation(locModel: locModel) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success:
-                self.showAlert(title: "Успешно", message: "Ваша геопозиция отправлена службам спасения")
+                let action = ActionModel(title: "Хорошо", style: .cancel, actionBlock: nil)
+                let alertModel = AlertModel(title: "Успешно", message: "Ваша геопозиция отправлена службам спасения", preferredStyle: .alert, actions: [action])
+                self.alertManager.showAlert(from: self, alertModel: alertModel)
             case .failure:
-                self.showAlert(title: "Ошибка", message: "Ваша геопозиция не отправлена, попробуйте снова")
+                let action = ActionModel(title: "Хорошо", style: .cancel, actionBlock: nil)
+                let alertModel = AlertModel(title: "Ошибка", message: "Ваша геопозиция не отправлена, попробуйте снова", preferredStyle: .alert, actions: [action])
+                self.alertManager.showAlert(from: self, alertModel: alertModel)
             }
         }
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "Хорошо", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        
-        present(alertController, animated: true, completion: nil)
     }
 }

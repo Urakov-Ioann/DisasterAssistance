@@ -14,6 +14,7 @@ class RescuerViewController: UIViewController {
     
     private let landscapeHelper = LandscapeHelper()
     private let firestoreRepository: FirebaseRepositoryProtocol = FirebaseRepository(firebaseService: FirebaseService() as FirebaseServiceProtocol)
+    private let alertManager: AlertManagerProtocol = AlertManager()
     
     // MARK: - UI Components
     
@@ -54,7 +55,7 @@ class RescuerViewController: UIViewController {
     private var currentPoints = [YMKRequestPoint]()
     private var routesCollection: YMKMapObjectCollection!
     private var placemarks = [YMKPlacemarkMapObject]()
-    private var routesToggle = false
+    private var routesToggle = true
     
     // MARK: - Lifecycle
     
@@ -96,11 +97,16 @@ class RescuerViewController: UIViewController {
     
     private func drivingRouteHandler(drivingRoutes: [YMKDrivingRoute]?, error: Error?) {
         if let error {
-            // Handle request routes error
+            let action = ActionModel(title: "Понятно", style: .cancel, actionBlock: nil)
+            let alertModel = AlertModel(title: "Ошибка", message: "В данной местности невозможно построить маршрут", preferredStyle: .alert, actions: [action])
+            alertManager.showAlert(from: self, alertModel: alertModel)
             return
         }
 
         guard let drivingRoutes else {
+            let action = ActionModel(title: "Понятно", style: .cancel, actionBlock: nil)
+            let alertModel = AlertModel(title: "Ошибка", message: "В данной местности невозможно построить маршрут", preferredStyle: .alert, actions: [action])
+            alertManager.showAlert(from: self, alertModel: alertModel)
             return
         }
         
@@ -113,6 +119,8 @@ class RescuerViewController: UIViewController {
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            self.routesToggle = false
+            self.showRouteButton.setTitle("Скрыть маршруты спасения", for: .normal)
             self.drawRoute(polyline: polyline)
         }
     }
@@ -130,7 +138,7 @@ class RescuerViewController: UIViewController {
     
     @objc
     private func createRoute() {
-        routesToggle.toggle()
+        routesCollection.clear()
         if routesToggle {
             drivingSession = drivingRouter.requestRoutes(
                 with: currentPoints,
@@ -138,15 +146,16 @@ class RescuerViewController: UIViewController {
                 vehicleOptions: YMKDrivingVehicleOptions(),
                 routeHandler: drivingRouteHandler
             )
-            showRouteButton.setTitle("Скрыть маршруты спасения", for: .normal)
         } else {
-            routesCollection.clear()
+            routesToggle = true
             showRouteButton.setTitle("Показать маршруты спасения", for: .normal)
         }
     }
     
     @objc
     private func didSelectSegmenta(control: UISegmentedControl) {
+        routesCollection.clear()
+        showRouteButton.setTitle("Показать маршруты спасения", for: .normal)
         for object in placemarks {
             if object.isValid  {
                 mapView.mapWindow.map.mapObjects.remove(with: object)
