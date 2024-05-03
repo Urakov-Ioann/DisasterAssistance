@@ -76,6 +76,8 @@
                     <navigationItem key="navigationItem" id="uOO-cc-eML"/>
                     <connections>
                         <outlet property="injuredButton" destination="dU3-QX-E1K" id="jGd-bP-Z0z"/>
+                        <outlet property="loginTextField" destination="WGZ-J7-dEd" id="8br-4d-mF3"/>
+                        <outlet property="passwordTextField" destination="aYw-2h-kis" id="pJa-x4-mm1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -90,9 +92,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxb-v6-25V">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxb-v6-25V">
                                 <rect key="frame" x="123" y="561" width="148" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -106,9 +107,26 @@
                                     <action selector="reportButtonAction:" destination="Bdm-sU-Cme" eventType="touchUpInside" id="emq-fW-W5q"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dx-LA-AAw">
+                                <rect key="frame" x="88.666666666666671" y="604" width="215.66666666666663" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.078431372550000003" green="0.12941176469999999" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <size key="titleShadowOffset" width="8" height="8"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Сообщить подробности">
+                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="injuredButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fNa-6s-LFX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MJV-oj-0eN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6dx-LA-AAw" firstAttribute="centerX" secondItem="9Kz-Wp-oWX" secondAttribute="centerX" id="Vvv-90-vL5"/>
+                            <constraint firstItem="6dx-LA-AAw" firstAttribute="top" secondItem="oxb-v6-25V" secondAttribute="bottom" constant="16" id="ron-sS-NdB"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BXG-mR-Xuq"/>
                 </viewController>

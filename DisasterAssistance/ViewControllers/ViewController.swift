@@ -10,18 +10,45 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var injuredButton: UIButton!
+    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    private let authService: AuthServiceProtocol = AuthService()
+    private let alertManager: AlertManagerProtocol = AlertManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         injuredButton.layer.cornerRadius = 12
         injuredButton.layer.borderColor = UIColor.black.cgColor
         injuredButton.layer.borderWidth = 1
+        passwordTextField.isSecureTextEntry = true
     }
 
 
     @IBAction func loginButtonAction(_ sender: Any) {
-        let vc =  TabBarController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let userRequest = LoginUserRequest(
+            email: loginTextField.text ?? "",
+            password: passwordTextField.text ?? ""
+        )
+        
+        authService.loginUser(with: userRequest) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                let action = ActionModel(
+                    title: "Понятно",
+                    style: .destructive,
+                    actionBlock: nil)
+                let alertModel = AlertModel(
+                    title: "Ошибка",
+                    message: "Неправильный логин или пароль",
+                    preferredStyle: .alert,
+                    actions: [action])
+                self.alertManager.showAlert(from: self, alertModel: alertModel)
+                return
+            }
+            let vc =  TabBarController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
                                                       
     @IBAction func injuredButtonAction(_ sender: Any) {

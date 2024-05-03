@@ -10,6 +10,9 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    private let authService: AuthServiceProtocol = AuthService()
+    
     private let dataSource = ["Удалить аккаунт", "Выйти из аккаунта"]
     
     override func viewDidLoad() {
@@ -41,7 +44,10 @@ extension ProfileViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         switch indexPath.row {
         case 1:
-            navigationController?.popToRootViewController(animated: true)
+            authService.logout { [weak self] _ in
+                guard let self = self else { return }
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         default:
             break
         }
