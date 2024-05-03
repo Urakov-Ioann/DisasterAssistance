@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B7748142BE3AC69004CE4E5 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7748132BE3AC69004CE4E5 /* AlertManager.swift */; };
 		1B7748162BE3AC9E004CE4E5 /* AlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7748152BE3AC9E004CE4E5 /* AlertModels.swift */; };
+		1B7748182BE4FD02004CE4E5 /* JarvisHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7748172BE4FD02004CE4E5 /* JarvisHelper.swift */; };
 		1B9763B02BD3D348001BEB10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763AF2BD3D348001BEB10 /* AppDelegate.swift */; };
 		1B9763B22BD3D348001BEB10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763B12BD3D348001BEB10 /* SceneDelegate.swift */; };
 		1B9763B42BD3D348001BEB10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763B32BD3D348001BEB10 /* ViewController.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		1B7748132BE3AC69004CE4E5 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		1B7748152BE3AC9E004CE4E5 /* AlertModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModels.swift; sourceTree = "<group>"; };
+		1B7748172BE4FD02004CE4E5 /* JarvisHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarvisHelper.swift; sourceTree = "<group>"; };
 		1B9763AC2BD3D348001BEB10 /* DisasterAssistance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DisasterAssistance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B9763AF2BD3D348001BEB10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B9763B12BD3D348001BEB10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				1B9D6E0E2BDD3E8D00E63C6E /* LandscapeHelper.swift */,
+				1B7748172BE4FD02004CE4E5 /* JarvisHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				1B9D6E062BD654FE00E63C6E /* FirebaseRepository.swift in Sources */,
 				1B7748162BE3AC9E004CE4E5 /* AlertModels.swift in Sources */,
 				1B9D6E0D2BD7A5A500E63C6E /* YBaseMapView.swift in Sources */,
+				1B7748182BE4FD02004CE4E5 /* JarvisHelper.swift in Sources */,
 				1B9763B22BD3D348001BEB10 /* SceneDelegate.swift in Sources */,
 				1B7748142BE3AC69004CE4E5 /* AlertManager.swift in Sources */,
 				1B9D6E0F2BDD3E8D00E63C6E /* LandscapeHelper.swift in Sources */,

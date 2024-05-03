@@ -27,19 +27,16 @@ private extension InjuredTabBarController {
         let injuredViewController = story.instantiateViewController(withIdentifier: "InjuredVC") as! InjuredViewController
         let profileViewController = story.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         
-        let navInjuredViewController = UINavigationController(rootViewController: injuredViewController)
-        let navProfileViewController = UINavigationController(rootViewController: profileViewController)
-        
-        navInjuredViewController.tabBarItem.title = "Экран пострадавшего"
-        navInjuredViewController.tabBarItem.image = UIImage(systemName: "figure.wave")
-        navProfileViewController.tabBarItem.title = "Профиль"
-        navProfileViewController.tabBarItem.image = UIImage(systemName: "person")
+        injuredViewController.tabBarItem.title = "Экран пострадавшего"
+        injuredViewController.tabBarItem.image = UIImage(systemName: "figure.wave")
+        profileViewController.tabBarItem.title = "Профиль"
+        profileViewController.tabBarItem.image = UIImage(systemName: "person")
         
         tabBar.tintColor = .black
         
         viewControllers = [
-            navInjuredViewController,
-            navProfileViewController
+            injuredViewController,
+            profileViewController
         ]
     }
 }

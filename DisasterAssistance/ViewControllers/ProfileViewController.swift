@@ -39,5 +39,11 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
         tableView.deselectRow(at: indexPath, animated: false)
+        switch indexPath.row {
+        case 1:
+            navigationController?.popToRootViewController(animated: true)
+        default:
+            break
+        }
     }
 }

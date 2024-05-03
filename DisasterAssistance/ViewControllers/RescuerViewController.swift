@@ -13,6 +13,7 @@ class RescuerViewController: UIViewController {
     // MARK: - Dependencies
     
     private let landscapeHelper = LandscapeHelper()
+    private let jarvisHelper = JarvisHelper()
     private let firestoreRepository: FirebaseRepositoryProtocol = FirebaseRepository(firebaseService: FirebaseService() as FirebaseServiceProtocol)
     private let alertManager: AlertManagerProtocol = AlertManager()
     
@@ -90,6 +91,7 @@ class RescuerViewController: UIViewController {
     private func addPlacemark(_ map: YMKMap, point: YMKPoint) {
         let image1 = UIImage(named: "whiteCircle") ?? UIImage()
         let placemark1 = map.mapObjects.addPlacemark()
+        placemarks.append(placemark1)
         placemark1.geometry = point
         placemark1.setIconWith(image1)
         let image = UIImage(named: "greenCircle") ?? UIImage()
@@ -134,17 +136,21 @@ class RescuerViewController: UIViewController {
     }
     
     private func drawRoute(polyline: YMKPolyline) {
-        
         let polylineMapObject = routesCollection.addPolyline(with: polyline)
         polylineMapObject.strokeWidth = 4.0
         polylineMapObject.setStrokeColorWith(.systemGreen)
+    }
+    
+    private func drawLine(polyline: YMKPolyline, color: UIColor) {
+        let polylineMapObject = routesCollection.addPolyline(with: polyline)
+        polylineMapObject.strokeWidth = 4.0
+        polylineMapObject.setStrokeColorWith(color)
     }
     
     // MARK: - Actions
     
     @objc
     private func createRoute() {
-        routesCollection.clear()
         if routesToggle {
             drivingSession = drivingRouter.requestRoutes(
                 with: currentPoints,
@@ -160,6 +166,7 @@ class RescuerViewController: UIViewController {
     
     @objc
     private func didSelectSegmenta(control: UISegmentedControl) {
+        routesToggle = true
         routesCollection.clear()
         showRouteButton.setTitle("Показать маршруты спасения", for: .normal)
         for object in placemarks {
@@ -168,17 +175,41 @@ class RescuerViewController: UIViewController {
             }
         }
         
+        var jarvisPoints = [Location]()
         currentPoints = []
         for point in points {
             let coordinate = Location(latitude: point.point.latitude, longitude: point.point.longitude)
             if landscapeHelper.isCoordinateInLandscap(controlItems[control.selectedSegmentIndex], coordinate: coordinate) {
                 currentPoints.append(point)
+                jarvisPoints.append(coordinate)
                 addPlacemark(mapView.mapWindow.map, point: point.point)
             }
         }
         
         currentPoints[0] = YMKRequestPoint(point: currentPoints[0].point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil)
         currentPoints[currentPoints.count - 1] = YMKRequestPoint(point: currentPoints[currentPoints.count - 1].point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil)
+        
+        if currentPoints.count > 2 {
+            let hullList = jarvisHelper.convexHull(points: jarvisPoints)
+            for i in 1..<hullList.count {
+                self.drawLine(
+                    polyline: YMKPolyline(points: [
+                        YMKPoint(latitude: hullList[i].latitude, longitude: hullList[i].longitude),
+                        YMKPoint(latitude: hullList[i-1].latitude, longitude: hullList[i-1].longitude),
+                    ]),
+                    color: .red
+                )
+                if i == hullList.count - 1 {
+                    self.drawLine(
+                        polyline: YMKPolyline(points: [
+                            YMKPoint(latitude: hullList[0].latitude, longitude: hullList[0].longitude),
+                            YMKPoint(latitude: hullList[i].latitude, longitude: hullList[i].longitude),
+                        ]),
+                        color: .red
+                    )
+                }
+            }
+        }
     }
 }
 

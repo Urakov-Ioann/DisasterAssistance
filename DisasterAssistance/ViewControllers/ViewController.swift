@@ -9,9 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var injuredButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        injuredButton.layer.cornerRadius = 12
+        injuredButton.layer.borderColor = UIColor.black.cgColor
+        injuredButton.layer.borderWidth = 1
     }
 
 

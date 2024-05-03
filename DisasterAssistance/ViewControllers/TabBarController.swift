@@ -27,20 +27,17 @@ private extension TabBarController {
         
         let rescuerViewController = story.instantiateViewController(withIdentifier: "RescuerVC") as! RescuerViewController
         let profileViewController = story.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        
-        let navRescViewController = UINavigationController(rootViewController: rescuerViewController)
-        let navProfileViewController = UINavigationController(rootViewController: profileViewController)
-        
-        navRescViewController.tabBarItem.title = "Карта бедствий"
-        navRescViewController.tabBarItem.image = UIImage(systemName: "map")
-        navProfileViewController.tabBarItem.title = "Профиль"
-        navProfileViewController.tabBarItem.image = UIImage(systemName: "person")
+    
+        rescuerViewController.tabBarItem.title = "Карта бедствий"
+        rescuerViewController.tabBarItem.image = UIImage(systemName: "map")
+        profileViewController.tabBarItem.title = "Профиль"
+        profileViewController.tabBarItem.image = UIImage(systemName: "person")
         
         tabBar.tintColor = .black
         
         viewControllers = [
-            navRescViewController,
-            navProfileViewController
+            rescuerViewController,
+            profileViewController
         ]
     }
 }

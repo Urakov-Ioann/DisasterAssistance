@@ -27,17 +27,32 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ff-iD-P8l">
-                                <rect key="frame" x="160.33333333333334" y="471.66666666666669" width="72.666666666666657" height="35"/>
+                                <rect key="frame" x="118" y="471.66666666666669" width="157" height="35"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="157" id="4Y4-Pb-0CF"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Войти"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Войти"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pIm-EX-io4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dU3-QX-E1K">
-                                <rect key="frame" x="118" y="703" width="157" height="35"/>
+                                <rect key="frame" x="118.33333333333333" y="703" width="156.33333333333337" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.078431372550000003" green="0.12941176469999999" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <size key="titleShadowOffset" width="8" height="8"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Я пострадавший"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Я пострадавший">
+                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="injuredButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CR4-kL-LCV"/>
                                 </connections>
@@ -59,10 +74,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uOO-cc-eML"/>
+                    <connections>
+                        <outlet property="injuredButton" destination="dU3-QX-E1K" id="jGd-bP-Z0z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047" y="-27"/>
+            <point key="canvasLocation" x="1046.5648854961833" y="-27.464788732394368"/>
         </scene>
         <!--Injured View Controller-->
         <scene sceneID="EQp-ge-nCY">
@@ -75,8 +93,15 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxb-v6-25V">
                                 <rect key="frame" x="123" y="561" width="148" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Сообщить о ЧС"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Сообщить о ЧС"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="reportButtonAction:" destination="Bdm-sU-Cme" eventType="touchUpInside" id="emq-fW-W5q"/>
                                 </connections>
@@ -89,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KE1-9u-mYd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2195" y="416"/>
+            <point key="canvasLocation" x="2194.6564885496182" y="415.49295774647891"/>
         </scene>
         <!--Rescuer View Controller-->
         <scene sceneID="8hc-Fd-yrg">
