@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var injuredButton: UIButton!
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    private var disasterTypePicker: UIPickerView = UIPickerView()
     
     private let authService: AuthServiceProtocol = AuthService()
     private let alertManager: AlertManagerProtocol = AlertManager()

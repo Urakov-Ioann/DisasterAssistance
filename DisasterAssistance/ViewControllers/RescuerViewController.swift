@@ -70,7 +70,7 @@ class RescuerViewController: UIViewController {
             case .success(let locationsModel):
                 guard let locations = locationsModel else { return }
                 for coordinate in locations {
-                    let point = YMKPoint(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                    let point = YMKPoint(latitude: coordinate.location.latitude, longitude: coordinate.location.longitude)
                     self.addPlacemark(mapView.mapWindow.map, point: point)
                     points.append(YMKRequestPoint(
                         point: point,
@@ -185,6 +185,7 @@ class RescuerViewController: UIViewController {
                 addPlacemark(mapView.mapWindow.map, point: point.point)
             }
         }
+        guard !currentPoints.isEmpty else { return }
         
         currentPoints[0] = YMKRequestPoint(point: currentPoints[0].point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil)
         currentPoints[currentPoints.count - 1] = YMKRequestPoint(point: currentPoints[currentPoints.count - 1].point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil)

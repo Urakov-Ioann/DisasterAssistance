@@ -16,6 +16,7 @@ class InjuredViewController: UIViewController {
     private let alertManager: AlertManagerProtocol = AlertManager()
     
     private var uuidOfDisaster: UUID?
+    private var locationOfDisaster: Location?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class InjuredViewController: UIViewController {
     @IBAction func reportButtonAction(_ sender: Any) {
         guard let cllocation = locationService.getCurrentLocation() else { return }
         let location = Location(latitude: cllocation.coordinate.latitude, longitude: cllocation.coordinate.longitude)
-        
+        self.locationOfDisaster = location
 //        for _ in 0...20 {
 //            let location = Location(latitude: Double.random(in: 45.06...46), longitude: Double.random(in: 39...41))
 //            self.sendLocation(locModel: location)
@@ -48,11 +49,12 @@ class InjuredViewController: UIViewController {
 //            self.sendLocation(locModel: i)
 //        }
         
+        let disasterModel = DisasterModel(location: location, numberOfVictims: "нет информации", typeOfDisaster: "нет информации", typeOfInjures: "нет информации")
         
-        self.sendLocation(locModel: location)
+        self.sendLocation(locModel: disasterModel)
     }
     
-    private func sendLocation(locModel: Location) {
+    private func sendLocation(locModel: DisasterModel) {
         uuidOfDisaster = UUID()
         guard let documentName = uuidOfDisaster else { return}
         firestoreRepository.setLocation(
@@ -75,6 +77,12 @@ class InjuredViewController: UIViewController {
     }
     
     @IBAction func moreInfoButtonAction(_ sender: Any) {
+        let story = UIStoryboard(name: "Main", bundle:nil)
+        let otherInfoVC = story.instantiateViewController(withIdentifier: "OtherInformationVC") as! OtherInformationViewController
+        otherInfoVC.documentName = uuidOfDisaster?.uuidString
+        otherInfoVC.firestoreRepository = firestoreRepository
+        otherInfoVC.location = locationOfDisaster
         
+        navigationController?.showDetailViewController(otherInfoVC, sender: self)
     }
 }

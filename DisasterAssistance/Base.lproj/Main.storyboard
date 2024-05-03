@@ -107,7 +107,7 @@
                                     <action selector="reportButtonAction:" destination="Bdm-sU-Cme" eventType="touchUpInside" id="emq-fW-W5q"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dx-LA-AAw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dx-LA-AAw">
                                 <rect key="frame" x="88.666666666666671" y="612" width="215.66666666666663" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.12941176469999999" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -138,6 +138,105 @@
             </objects>
             <point key="canvasLocation" x="2194.6564885496182" y="415.49295774647891"/>
         </scene>
+        <!--Other Information View Controller-->
+        <scene sceneID="20i-HT-KQT">
+            <objects>
+                <viewController storyboardIdentifier="OtherInformationVC" id="2jL-t4-Q9a" customClass="OtherInformationViewController" customModule="DisasterAssistance" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1uR-9C-kd9">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FMv-y0-tsd">
+                                <rect key="frame" x="0.0" y="222" width="393" height="162"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2jL-t4-Q9a" id="7H9-mg-V2T"/>
+                                    <outlet property="delegate" destination="2jL-t4-Q9a" id="B21-yF-Hz7"/>
+                                </connections>
+                            </pickerView>
+                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRY-T2-f7F">
+                                <rect key="frame" x="0.0" y="524" width="192" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="192" id="GUz-Qz-1Uq"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="2jL-t4-Q9a" id="Icu-os-lrg"/>
+                                    <outlet property="delegate" destination="2jL-t4-Q9a" id="2n1-hA-jCP"/>
+                                </connections>
+                            </pickerView>
+                            <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ynp-Oo-R9r">
+                                <rect key="frame" x="200" y="524" width="193" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="193" id="Oi4-mQ-k26"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="2jL-t4-Q9a" id="wbU-jX-YoC"/>
+                                    <outlet property="delegate" destination="2jL-t4-Q9a" id="RS1-zJ-EAG"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вид бедствия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2a-Cc-gI9">
+                                <rect key="frame" x="142" y="193" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество пострадвших" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KY-mt-pbF">
+                                <rect key="frame" x="38" y="457" width="117" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="117" id="aZ6-Cn-VaE"/>
+                                    <constraint firstAttribute="height" constant="59" id="i8h-sW-Y8b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Повреждения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJI-hj-KBj">
+                                <rect key="frame" x="241" y="476" width="111" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkL-Uh-HgJ">
+                                <rect key="frame" x="142" y="748" width="109.33333333333331" height="35"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Отправить"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="reportButtonAction:" destination="Bdm-sU-Cme" eventType="touchUpInside" id="1V2-rb-CxV"/>
+                                    <action selector="sendOtherInfoButtonAction:" destination="2jL-t4-Q9a" eventType="touchUpInside" id="HKA-Oc-bPD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Be3-xe-3wI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Be3-xe-3wI" firstAttribute="trailing" secondItem="FMv-y0-tsd" secondAttribute="trailing" id="8FD-Xs-NvI"/>
+                            <constraint firstItem="l2a-Cc-gI9" firstAttribute="top" secondItem="Be3-xe-3wI" secondAttribute="top" constant="134" id="9gy-Rf-Iwo"/>
+                            <constraint firstItem="Be3-xe-3wI" firstAttribute="bottom" secondItem="Ynp-Oo-R9r" secondAttribute="bottom" constant="78" id="9jZ-cE-yz6"/>
+                            <constraint firstItem="aRY-T2-f7F" firstAttribute="leading" secondItem="Be3-xe-3wI" secondAttribute="leading" id="Gdh-kn-3ib"/>
+                            <constraint firstItem="3KY-mt-pbF" firstAttribute="leading" secondItem="Be3-xe-3wI" secondAttribute="leading" constant="38" id="ICP-8W-h2t"/>
+                            <constraint firstItem="FkL-Uh-HgJ" firstAttribute="centerX" secondItem="Be3-xe-3wI" secondAttribute="centerX" id="KJ0-B0-PNG"/>
+                            <constraint firstItem="Ynp-Oo-R9r" firstAttribute="top" secondItem="tJI-hj-KBj" secondAttribute="bottom" constant="27" id="KnQ-fS-VfP"/>
+                            <constraint firstItem="l2a-Cc-gI9" firstAttribute="centerX" secondItem="Be3-xe-3wI" secondAttribute="centerX" id="Tq5-59-33v"/>
+                            <constraint firstItem="FMv-y0-tsd" firstAttribute="leading" secondItem="Be3-xe-3wI" secondAttribute="leading" id="Vvx-T8-NsS"/>
+                            <constraint firstItem="Be3-xe-3wI" firstAttribute="trailing" secondItem="Ynp-Oo-R9r" secondAttribute="trailing" id="WAT-CS-cet"/>
+                            <constraint firstItem="Be3-xe-3wI" firstAttribute="bottom" secondItem="FkL-Uh-HgJ" secondAttribute="bottom" constant="35" id="aT7-uj-EeS"/>
+                            <constraint firstItem="Be3-xe-3wI" firstAttribute="bottom" secondItem="aRY-T2-f7F" secondAttribute="bottom" constant="78" id="bec-Lb-vSd"/>
+                            <constraint firstItem="FMv-y0-tsd" firstAttribute="top" secondItem="Be3-xe-3wI" secondAttribute="top" constant="163" id="tWq-T9-g2S"/>
+                            <constraint firstItem="aRY-T2-f7F" firstAttribute="top" secondItem="3KY-mt-pbF" secondAttribute="bottom" constant="8" symbolic="YES" id="uNs-jw-PhT"/>
+                            <constraint firstItem="Be3-xe-3wI" firstAttribute="trailing" secondItem="tJI-hj-KBj" secondAttribute="trailing" constant="41" id="ucw-Ky-vyD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Quc-yB-u3u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2994.6564885496182" y="414.78873239436621"/>
+        </scene>
         <!--Rescuer View Controller-->
         <scene sceneID="8hc-Fd-yrg">
             <objects>
@@ -151,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihA-ra-khD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3329" y="-864"/>
+            <point key="canvasLocation" x="2195" y="-680"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="If8-v4-UEe">
@@ -204,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zb-Sh-qIc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4113.740458015267" y="294.36619718309862"/>
+            <point key="canvasLocation" x="4337" y="-27"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="inQ-sj-KcT">

@@ -17,7 +17,13 @@ struct Location: Codable {
 protocol FirebaseServiceProtocol {
     func setLocation(
         documentName: String,
-        locModel: Location,
+        locModel: DisasterModel,
+        completion: @escaping (Result<Bool, Error>) -> Void
+    )
+    
+    func updateLocation(
+        documentName: String,
+        locModel: DisasterModel,
         completion: @escaping (Result<Bool, Error>) -> Void
     )
     
@@ -37,10 +43,32 @@ final class FirebaseService {
 }
 
 extension FirebaseService: FirebaseServiceProtocol {
+    func updateLocation(
+        documentName: String,
+        locModel: DisasterModel,
+        completion: @escaping (Result<Bool, Error>) -> Void
+    ) {
+        let db = configureFB()
+        let locRef = db.collection("Locations").document(documentName)
+        locRef.updateData([
+            "numberOfVictims": locModel.numberOfVictims,
+            "typeOfDisaster": locModel.typeOfDisaster,
+            "typeOfInjures": locModel.typeOfInjures
+        ]) { error in
+            if let error = error {
+                print("FirebaseService setLocation: Error writing document: \(error)")
+                completion(.failure(error))
+            } else {
+                print("FirebaseService setLocation: Document successfully written!")
+                completion(.success(true))
+            }
+        }
+    }
+    
     
     func setLocation(
         documentName: String,
-        locModel: Location,
+        locModel: DisasterModel,
         completion: @escaping (Result<Bool, Error>) -> Void
     ) {
         let db = configureFB()
