@@ -16,6 +16,7 @@ struct Location: Codable {
 
 protocol FirebaseServiceProtocol {
     func setLocation(
+        documentName: String,
         locModel: Location,
         completion: @escaping (Result<Bool, Error>) -> Void
     )
@@ -38,11 +39,12 @@ final class FirebaseService {
 extension FirebaseService: FirebaseServiceProtocol {
     
     func setLocation(
+        documentName: String,
         locModel: Location,
         completion: @escaping (Result<Bool, Error>) -> Void
     ) {
         let db = configureFB()
-        let locRef = db.collection("Locations").document(UUID().uuidString)
+        let locRef = db.collection("Locations").document(documentName)
         do {
             try locRef.setData(from: locModel) { error in
                 if let error = error {

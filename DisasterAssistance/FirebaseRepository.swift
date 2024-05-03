@@ -8,8 +8,10 @@
 import Foundation
 
 protocol FirebaseRepositoryProtocol {
-    func setLocation(locModel: Location,
-                        completion: @escaping (Result<Bool, Error>) -> Void)
+    func setLocation(
+        documentName: String,
+        locModel: Location,
+        completion: @escaping (Result<Bool, Error>) -> Void)
     func getAllLocations(completion: @escaping (Result<[Location]?, Error>) -> Void)
 }
 
@@ -24,10 +26,14 @@ class FirebaseRepository: FirebaseRepositoryProtocol {
     }
     
     func setLocation(
+        documentName: String,
         locModel: Location,
         completion: @escaping (Result<Bool, Error>) -> Void
     ) {
-        firebaseService.setLocation(locModel: locModel) { result in
+        firebaseService.setLocation(
+            documentName: documentName,
+            locModel: locModel
+        ) { result in
             switch result {
             case .success(let result):
                 completion(.success(result))

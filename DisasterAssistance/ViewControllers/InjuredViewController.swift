@@ -9,13 +9,20 @@ import UIKit
 
 class InjuredViewController: UIViewController {
 
+    @IBOutlet weak var otherInformationButton: UIButton!
+    
     private let firestoreRepository: FirebaseRepositoryProtocol = FirebaseRepository(firebaseService: FirebaseService() as FirebaseServiceProtocol)
     private let locationService: LocationServiceProtocol = LocationService()
     private let alertManager: AlertManagerProtocol = AlertManager()
     
+    private var uuidOfDisaster: UUID?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Экран пострадавшего"
+        otherInformationButton.layer.cornerRadius = 12
+        otherInformationButton.layer.borderColor = UIColor.black.cgColor
+        otherInformationButton.layer.borderWidth = 1
     }
     
     @IBAction func reportButtonAction(_ sender: Any) {
@@ -46,18 +53,28 @@ class InjuredViewController: UIViewController {
     }
     
     private func sendLocation(locModel: Location) {
-        firestoreRepository.setLocation(locModel: locModel) { [weak self] result in
+        uuidOfDisaster = UUID()
+        guard let documentName = uuidOfDisaster else { return}
+        firestoreRepository.setLocation(
+            documentName: documentName.uuidString,
+            locModel: locModel
+        ) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success:
                 let action = ActionModel(title: "Хорошо", style: .cancel, actionBlock: nil)
                 let alertModel = AlertModel(title: "Успешно", message: "Ваша геопозиция отправлена службам спасения", preferredStyle: .alert, actions: [action])
                 self.alertManager.showAlert(from: self, alertModel: alertModel)
+                self.otherInformationButton.isEnabled = true
             case .failure:
                 let action = ActionModel(title: "Хорошо", style: .cancel, actionBlock: nil)
                 let alertModel = AlertModel(title: "Ошибка", message: "Ваша геопозиция не отправлена, попробуйте снова", preferredStyle: .alert, actions: [action])
                 self.alertManager.showAlert(from: self, alertModel: alertModel)
             }
         }
+    }
+    
+    @IBAction func moreInfoButtonAction(_ sender: Any) {
+        
     }
 }

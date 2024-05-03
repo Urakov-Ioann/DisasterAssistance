@@ -92,8 +92,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxb-v6-25V">
-                                <rect key="frame" x="123" y="561" width="148" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxb-v6-25V">
+                                <rect key="frame" x="122.66666666666669" y="561" width="148" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -107,28 +107,32 @@
                                     <action selector="reportButtonAction:" destination="Bdm-sU-Cme" eventType="touchUpInside" id="emq-fW-W5q"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dx-LA-AAw">
-                                <rect key="frame" x="88.666666666666671" y="604" width="215.66666666666663" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dx-LA-AAw">
+                                <rect key="frame" x="88.666666666666671" y="612" width="215.66666666666663" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.12941176469999999" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <size key="titleShadowOffset" width="8" height="8"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Сообщить подробности">
-                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="plain" title="Сообщить подробности"/>
                                 <connections>
                                     <action selector="injuredButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fNa-6s-LFX"/>
+                                    <action selector="moreInfoButtonAction:" destination="Bdm-sU-Cme" eventType="touchUpInside" id="yHG-kL-tbK"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MJV-oj-0eN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="oxb-v6-25V" firstAttribute="centerX" secondItem="MJV-oj-0eN" secondAttribute="centerX" id="BlY-Fo-HMl"/>
                             <constraint firstItem="6dx-LA-AAw" firstAttribute="centerX" secondItem="9Kz-Wp-oWX" secondAttribute="centerX" id="Vvv-90-vL5"/>
-                            <constraint firstItem="6dx-LA-AAw" firstAttribute="top" secondItem="oxb-v6-25V" secondAttribute="bottom" constant="16" id="ron-sS-NdB"/>
+                            <constraint firstItem="6dx-LA-AAw" firstAttribute="top" secondItem="oxb-v6-25V" secondAttribute="bottom" constant="16" id="rk1-GT-ABO"/>
+                            <constraint firstItem="MJV-oj-0eN" firstAttribute="bottom" secondItem="oxb-v6-25V" secondAttribute="bottom" constant="222" id="ukW-5d-Qes"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BXG-mR-Xuq"/>
+                    <connections>
+                        <outlet property="otherInformationButton" destination="6dx-LA-AAw" id="s8l-qg-7Iy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KE1-9u-mYd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
