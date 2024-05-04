@@ -203,7 +203,7 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
                 )
                 let alertModel = AlertModel(
                     title: "Информация о бедствии",
-                    message: "\($0.disasterType)",
+                    message: "Вид бедствия: \($0.disasterType)\nКоличество пострадавших: \($0.numOfVictims)\nТипы травм: \($0.injuresType)",
                     preferredStyle: .actionSheet,
                     actions: [action]
                 )

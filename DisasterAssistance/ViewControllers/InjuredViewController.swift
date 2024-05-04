@@ -30,24 +30,6 @@ class InjuredViewController: UIViewController {
         guard let cllocation = locationService.getCurrentLocation() else { return }
         let location = Location(latitude: cllocation.coordinate.latitude, longitude: cllocation.coordinate.longitude)
         self.locationOfDisaster = location
-//        for _ in 0...20 {
-//            let location = Location(latitude: Double.random(in: 45.06...46), longitude: Double.random(in: 39...41))
-//            self.sendLocation(locModel: location)
-//        }
-        
-//        let locations = [
-//            Location(latitude: 55.758938036209614, longitude: 37.643678622386545), // Moscow
-//            Location(latitude: 55.82251901906957, longitude: 37.612010524127555), // Moscow
-//            Location(latitude: 55.77714130014583, longitude: 37.7506956710279), // Moscow
-//            Location(latitude: 60.45343191228787, longitude: 59.2308017757992), // Mountains
-//            Location(latitude: 60.28263967508878, longitude: 59.133942636342894), // Mountains
-//            Location(latitude: 56.51280988140567, longitude: 32.87656229282573), // Forest
-//            
-//        ]
-//        
-//        for i in locations {
-//            self.sendLocation(locModel: i)
-//        }
         
         let disasterModel = DisasterModel(location: location, numberOfVictims: "нет информации", typeOfDisaster: "нет информации", typeOfInjures: "нет информации")
         

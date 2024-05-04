@@ -1,6 +1,6 @@
 //
 //  AlertModels.swift
-//  ARHitBalls
+//  DisasterAssistance
 //
 //  Created by Иоанн Ураков on 02.05.2024.
 //

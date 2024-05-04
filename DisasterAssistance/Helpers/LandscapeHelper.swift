@@ -17,10 +17,6 @@ enum LandscapeType: String {
 struct Landscape {
     let type: LandscapeType
     let area: [Location]
-//    let x1y1: Location
-//    let x1y2: Location
-//    let x2y1: Location
-//    let x2y2: Location
 }
 
 final class LandscapeHelper {
@@ -61,8 +57,6 @@ final class LandscapeHelper {
             if land.type == type {
                 return LocationInsidePolygon(location: coordinate, polygon: land.area)
             }
-//            return false
-            
         }
         return false
     }
@@ -71,34 +65,26 @@ final class LandscapeHelper {
 extension LandscapeHelper {
     func LocationInsidePolygon(location: Location, polygon: [Location]) -> Bool {
         var intersectCount = 0
-        
-        // Создаем луч, который начинается от нашей точки и направлен вправо на бесконечность
         let rayEnd = Location(latitude: Double.infinity, longitude: location.longitude)
         
-        // Проходимся по всем ребрам многоугольника
         for i in 0..<polygon.count {
             let p1 = polygon[i]
             let p2 = polygon[(i + 1) % polygon.count]
-            
-            // Проверяем, есть ли пересечение луча с ребром
+        
             if rayIntersectsEdge(location: location, rayEnd: rayEnd, edgeStart: p1, edgeEnd: p2) {
                 intersectCount += 1
             }
         }
         
-        // Если количество пересечений нечетное, то точка внутри многоугольника
         return intersectCount % 2 == 1
     }
 
     func rayIntersectsEdge(location: Location, rayEnd: Location, edgeStart: Location, edgeEnd: Location) -> Bool {
-        // Проверяем, лежат ли концы отрезка выше и ниже точки
         if (edgeStart.longitude <= location.longitude && edgeEnd.longitude >= location.longitude) ||
            (edgeStart.longitude >= location.longitude && edgeEnd.longitude <= location.longitude) {
             
-            // Если оба условия выполняются, проверяем пересечение луча с ребром
             let intersectionlatitude = (edgeEnd.latitude - edgeStart.latitude) * (location.longitude - edgeStart.longitude) / (edgeEnd.longitude - edgeStart.longitude) + edgeStart.latitude
             
-            // Проверяем, лежит ли точка пересечения правее нашей точки
             if intersectionlatitude >= location.latitude {
                 return true
             }

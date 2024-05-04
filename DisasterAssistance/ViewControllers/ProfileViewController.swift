@@ -43,6 +43,11 @@ extension ProfileViewController: UITableViewDelegate {
         print(indexPath.row)
         tableView.deselectRow(at: indexPath, animated: false)
         switch indexPath.row {
+        case 0:
+            authService.logout { [weak self] _ in
+                guard let self = self else { return }
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         case 1:
             authService.logout { [weak self] _ in
                 guard let self = self else { return }

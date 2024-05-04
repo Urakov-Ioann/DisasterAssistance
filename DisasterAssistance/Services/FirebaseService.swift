@@ -1,6 +1,6 @@
 //
 //  FirebaseService.swift
-//  spravochnik_spz
+//  DisasterAssistance
 //
 //  Created by Иоанн Ураков on 22.04.2024.
 //
