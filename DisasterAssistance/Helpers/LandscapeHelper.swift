@@ -30,10 +30,11 @@ final class LandscapeHelper {
         landscapesCoordinates = [
             Landscape(
                 type: .forest,
-                area: [Location(latitude: 56.429065063979934, longitude: 32.73421006967511),
+                area: [Location(latitude:  56.46625683798548, longitude:  32.947756811524975),
+                       Location(latitude: 56.56437425275999, longitude: 32.94501022963623),
+                       Location(latitude: 56.429065063979934, longitude: 32.73421006967511),
                        Location(latitude: 56.6071026880465, longitude: 32.72528367853669),
-                       Location(latitude: 56.46625683798548, longitude: 32.947756811524975),
-                       Location(latitude: 56.56437425275999, longitude: 32.94501022963623)]
+                       ]
             ),
             Landscape(
                 type: .city,

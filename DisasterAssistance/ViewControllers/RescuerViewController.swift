@@ -8,7 +8,42 @@
 import UIKit
 import YandexMapsMobile
 
-class RescuerViewController: UIViewController {
+struct DisasterPoint {
+    let point: YMKRequestPoint
+    let numOfVictims: String
+    let disasterType: String
+    let injuresType: String
+}
+
+struct DisasterPointWithMapOject {
+    let point: YMKRequestPoint
+    let mapObject: YMKMapObject
+    let numOfVictims: String
+    let disasterType: String
+    let injuresType: String
+    
+    init(point: DisasterPoint, mapObject: YMKMapObject) {
+        self.point = point.point
+        self.mapObject = mapObject
+        self.numOfVictims = point.numOfVictims
+        self.disasterType = point.disasterType
+        self.injuresType = point.injuresType
+    }
+    
+    init(point: YMKRequestPoint,
+                     mapObject: YMKMapObject,
+                     numOfVictims: String,
+                     disasterType: String,
+                     injuresType: String) {
+        self.point = point
+        self.mapObject = mapObject
+        self.numOfVictims = numOfVictims
+        self.disasterType = disasterType
+        self.injuresType = injuresType
+    }
+}
+
+class RescuerViewController: UIViewController, YMKMapObjectTapListener {
     
     // MARK: - Dependencies
     
@@ -52,8 +87,8 @@ class RescuerViewController: UIViewController {
         return options
     }()
     private var drivingSession: YMKDrivingSession?
-    private var points = [YMKRequestPoint]()
-    private var currentPoints = [YMKRequestPoint]()
+    private var points = [DisasterPoint]()
+    private var currentPoints = [DisasterPointWithMapOject]()
     private var routesCollection: YMKMapObjectCollection!
     private var placemarks = [YMKPlacemarkMapObject]()
     private var routesToggle = true
@@ -69,17 +104,22 @@ class RescuerViewController: UIViewController {
             switch result {
             case .success(let locationsModel):
                 guard let locations = locationsModel else { return }
-                for coordinate in locations {
-                    let point = YMKPoint(latitude: coordinate.location.latitude, longitude: coordinate.location.longitude)
-                    self.addPlacemark(mapView.mapWindow.map, point: point)
-                    points.append(YMKRequestPoint(
-                        point: point,
-                        type: .viapoint,
-                        pointContext: nil,
-                        drivingArrivalPointId: nil)
+                for model in locations {
+                    let point = YMKPoint(latitude: model.location.latitude, longitude: model.location.longitude)
+                    let disasterPoint = DisasterPoint(
+                        point: YMKRequestPoint(
+                            point: point,
+                            type: .viapoint,
+                            pointContext: nil,
+                            drivingArrivalPointId: nil
+                        ),
+                        numOfVictims: model.numberOfVictims,
+                        disasterType: model.typeOfDisaster,
+                        injuresType: model.typeOfInjures
                     )
+                    self.addPlacemark(mapView.mapWindow.map, point: disasterPoint)
+                    points.append(disasterPoint)
                 }
-                currentPoints = points
             case .failure(let failure):
                 print(failure)
             }
@@ -88,17 +128,19 @@ class RescuerViewController: UIViewController {
     
     // MARK: - Private methods
     
-    private func addPlacemark(_ map: YMKMap, point: YMKPoint) {
+    private func addPlacemark(_ map: YMKMap, point: DisasterPoint) {
         let image1 = UIImage(named: "whiteCircle") ?? UIImage()
         let placemark1 = map.mapObjects.addPlacemark()
         placemarks.append(placemark1)
-        placemark1.geometry = point
+        placemark1.geometry = point.point.point
         placemark1.setIconWith(image1)
         let image = UIImage(named: "greenCircle") ?? UIImage()
         let placemark = map.mapObjects.addPlacemark()
+        placemark.addTapListener(with: self)
         placemarks.append(placemark)
-        placemark.geometry = point
+        placemark.geometry = point.point.point
         placemark.setIconWith(image)
+        currentPoints.append(DisasterPointWithMapOject(point: point, mapObject: placemark))
     }
     
     private func drivingRouteHandler(drivingRoutes: [YMKDrivingRoute]?, error: Error?) {
@@ -147,13 +189,37 @@ class RescuerViewController: UIViewController {
         polylineMapObject.setStrokeColorWith(color)
     }
     
+    func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 8
+        currentPoints.forEach {
+            if $0.mapObject == mapObject {
+                let action = ActionModel(
+                    title: "Понятно",
+                    style: .default,
+                    actionBlock: nil
+                )
+                let alertModel = AlertModel(
+                    title: "Информация о бедствии",
+                    message: "\($0.disasterType)",
+                    preferredStyle: .actionSheet,
+                    actions: [action]
+                )
+                alertManager.showAlert(from: self, alertModel: alertModel)
+            }
+        }
+        return true
+    }
+    
     // MARK: - Actions
     
     @objc
     private func createRoute() {
+        var curPoints = [YMKRequestPoint]()
+        currentPoints.forEach { curPoints.append($0.point) }
         if routesToggle {
             drivingSession = drivingRouter.requestRoutes(
-                with: currentPoints,
+                with: curPoints,
                 drivingOptions: drivingOptions,
                 vehicleOptions: YMKDrivingVehicleOptions(),
                 routeHandler: drivingRouteHandler
@@ -178,17 +244,28 @@ class RescuerViewController: UIViewController {
         var jarvisPoints = [Location]()
         currentPoints = []
         for point in points {
-            let coordinate = Location(latitude: point.point.latitude, longitude: point.point.longitude)
+            let coordinate = Location(latitude: point.point.point.latitude, longitude: point.point.point.longitude)
             if landscapeHelper.isCoordinateInLandscap(controlItems[control.selectedSegmentIndex], coordinate: coordinate) {
-                currentPoints.append(point)
                 jarvisPoints.append(coordinate)
-                addPlacemark(mapView.mapWindow.map, point: point.point)
+                addPlacemark(mapView.mapWindow.map, point: point)
             }
         }
         guard !currentPoints.isEmpty else { return }
         
-        currentPoints[0] = YMKRequestPoint(point: currentPoints[0].point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil)
-        currentPoints[currentPoints.count - 1] = YMKRequestPoint(point: currentPoints[currentPoints.count - 1].point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil)
+        currentPoints[0] = DisasterPointWithMapOject(
+            point: YMKRequestPoint(point: currentPoints[0].point.point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil),
+            mapObject: currentPoints[0].mapObject,
+            numOfVictims: currentPoints[0].numOfVictims,
+            disasterType: currentPoints[0].disasterType,
+            injuresType: currentPoints[0].injuresType
+        )
+        
+        currentPoints[currentPoints.count - 1] = DisasterPointWithMapOject(
+            point: YMKRequestPoint(point: currentPoints[currentPoints.count - 1].point.point, type: .waypoint, pointContext: nil, drivingArrivalPointId: nil),
+            mapObject: currentPoints[currentPoints.count - 1].mapObject,
+            numOfVictims: currentPoints[currentPoints.count - 1].numOfVictims,
+            disasterType: currentPoints[currentPoints.count - 1].disasterType,
+            injuresType: currentPoints[currentPoints.count - 1].injuresType)
         
         if currentPoints.count > 2 {
             let hullList = jarvisHelper.convexHull(points: jarvisPoints)
