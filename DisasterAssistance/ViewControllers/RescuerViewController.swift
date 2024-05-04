@@ -90,6 +90,7 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
     private var points = [DisasterPoint]()
     private var currentPoints = [DisasterPointWithMapOject]()
     private var routesCollection: YMKMapObjectCollection!
+    private var linesCollection: YMKMapObjectCollection!
     private var placemarks = [YMKPlacemarkMapObject]()
     private var routesToggle = true
     
@@ -99,6 +100,7 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
         super.viewDidLoad()
         setupViewController()
         routesCollection = mapView.mapWindow.map.mapObjects.add()
+        linesCollection = mapView.mapWindow.map.mapObjects.add()
         firestoreRepository.getAllLocations { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -184,7 +186,7 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
     }
     
     private func drawLine(polyline: YMKPolyline, color: UIColor) {
-        let polylineMapObject = routesCollection.addPolyline(with: polyline)
+        let polylineMapObject = linesCollection.addPolyline(with: polyline)
         polylineMapObject.strokeWidth = 4.0
         polylineMapObject.setStrokeColorWith(color)
     }
@@ -216,6 +218,7 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
     @objc
     private func createRoute() {
         var curPoints = [YMKRequestPoint]()
+        
         currentPoints.forEach { curPoints.append($0.point) }
         if routesToggle {
             drivingSession = drivingRouter.requestRoutes(
@@ -225,6 +228,7 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
                 routeHandler: drivingRouteHandler
             )
         } else {
+            routesCollection.clear()
             routesToggle = true
             showRouteButton.setTitle("Показать маршруты спасения", for: .normal)
         }
@@ -234,12 +238,16 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
     private func didSelectSegmenta(control: UISegmentedControl) {
         routesToggle = true
         routesCollection.clear()
+        if let linesCollection = linesCollection {
+            linesCollection.clear()
+        }
         showRouteButton.setTitle("Показать маршруты спасения", for: .normal)
         for object in placemarks {
             if object.isValid  {
                 mapView.mapWindow.map.mapObjects.remove(with: object)
             }
         }
+        
         
         var jarvisPoints = [Location]()
         currentPoints = []
@@ -250,6 +258,8 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
                 addPlacemark(mapView.mapWindow.map, point: point)
             }
         }
+        
+        guard control.selectedSegmentIndex != 3 else { return }
         guard !currentPoints.isEmpty else { return }
         
         currentPoints[0] = DisasterPointWithMapOject(
@@ -290,6 +300,8 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
         }
     }
 }
+
+// MARK: - Setup constraints
 
 private extension RescuerViewController {
     func setupViewController() {
