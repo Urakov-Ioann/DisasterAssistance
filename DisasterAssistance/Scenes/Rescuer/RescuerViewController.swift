@@ -191,27 +191,27 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
         polylineMapObject.setStrokeColorWith(color)
     }
     
-    func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.maximumFractionDigits = 8
-        currentPoints.forEach {
-            if $0.mapObject == mapObject {
-                let action = ActionModel(
-                    title: "Понятно",
-                    style: .default,
-                    actionBlock: nil
-                )
-                let alertModel = AlertModel(
-                    title: "Информация о бедствии",
-                    message: "Вид бедствия: \($0.disasterType)\nКоличество пострадавших: \($0.numOfVictims)\nТипы травм: \($0.injuresType)",
-                    preferredStyle: .actionSheet,
-                    actions: [action]
-                )
-                alertManager.showAlert(from: self, alertModel: alertModel)
-            }
+func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.maximumFractionDigits = 8
+    currentPoints.forEach {
+        if $0.mapObject == mapObject {
+            let action = ActionModel(
+                title: "Понятно",
+                style: .default,
+                actionBlock: nil
+            )
+            let alertModel = AlertModel(
+                title: "Информация о бедствии",
+                message: "Вид бедствия: \($0.disasterType)\nКоличество пострадавших: \($0.numOfVictims)\nТипы травм: \($0.injuresType)",
+                preferredStyle: .actionSheet,
+                actions: [action]
+            )
+            alertManager.showAlert(from: self, alertModel: alertModel)
         }
-        return true
     }
+    return true
+}
     
     // MARK: - Actions
     
@@ -253,7 +253,7 @@ class RescuerViewController: UIViewController, YMKMapObjectTapListener {
         currentPoints = []
         for point in points {
             let coordinate = Location(latitude: point.point.point.latitude, longitude: point.point.point.longitude)
-            if landscapeHelper.isCoordinateInLandscap(controlItems[control.selectedSegmentIndex], coordinate: coordinate) {
+            if landscapeHelper.isCoordinateInLandscape(controlItems[control.selectedSegmentIndex], coordinate: coordinate) {
                 jarvisPoints.append(coordinate)
                 addPlacemark(mapView.mapWindow.map, point: point)
             }

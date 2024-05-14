@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AuthViewController.swift
 //  DisasterAssistance
 //
 //  Created by Иоанн Ураков on 20.04.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AuthViewController: UIViewController {
 
     @IBOutlet weak var injuredButton: UIButton!
     @IBOutlet weak var loginTextField: UITextField!

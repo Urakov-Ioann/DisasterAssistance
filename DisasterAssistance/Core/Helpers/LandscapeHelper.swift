@@ -11,7 +11,7 @@ enum LandscapeType: String {
     case city = "Город"
     case forest = "Лес"
     case mountain = "Горы"
-    case all = "Всп"
+    case all = "Все"
 }
 
 struct Landscape {
@@ -49,21 +49,21 @@ final class LandscapeHelper {
         ]
     }
     
-    func isCoordinateInLandscap(_ type: LandscapeType, coordinate: Location) -> Bool {
+    func isCoordinateInLandscape(_ type: LandscapeType, coordinate: Location) -> Bool {
         if type == .all {
             return true
         }
         for land in landscapesCoordinates {
             if land.type == type {
-                return LocationInsidePolygon(location: coordinate, polygon: land.area)
+                return isLocationInsidePolygon(location: coordinate, polygon: land.area)
             }
         }
         return false
     }
 }
 
-extension LandscapeHelper {
-    func LocationInsidePolygon(location: Location, polygon: [Location]) -> Bool {
+private extension LandscapeHelper {
+    func isLocationInsidePolygon(location: Location, polygon: [Location]) -> Bool {
         var intersectCount = 0
         let rayEnd = Location(latitude: Double.infinity, longitude: location.longitude)
         

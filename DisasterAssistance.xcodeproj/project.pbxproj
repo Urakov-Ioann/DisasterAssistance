@@ -14,7 +14,7 @@
 		1B77481C2BE54554004CE4E5 /* OtherInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77481B2BE54554004CE4E5 /* OtherInformationViewController.swift */; };
 		1B9763B02BD3D348001BEB10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763AF2BD3D348001BEB10 /* AppDelegate.swift */; };
 		1B9763B22BD3D348001BEB10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763B12BD3D348001BEB10 /* SceneDelegate.swift */; };
-		1B9763B42BD3D348001BEB10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763B32BD3D348001BEB10 /* ViewController.swift */; };
+		1B9763B42BD3D348001BEB10 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9763B32BD3D348001BEB10 /* AuthViewController.swift */; };
 		1B9763B72BD3D348001BEB10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9763B52BD3D348001BEB10 /* Main.storyboard */; };
 		1B9763B92BD3D349001BEB10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B9763B82BD3D349001BEB10 /* Assets.xcassets */; };
 		1B9763BC2BD3D349001BEB10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9763BA2BD3D349001BEB10 /* LaunchScreen.storyboard */; };
@@ -63,7 +63,7 @@
 		1B9763AC2BD3D348001BEB10 /* DisasterAssistance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DisasterAssistance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B9763AF2BD3D348001BEB10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B9763B12BD3D348001BEB10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1B9763B32BD3D348001BEB10 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1B9763B32BD3D348001BEB10 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		1B9763B62BD3D348001BEB10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B9763B82BD3D349001BEB10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B9763BB2BD3D349001BEB10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -118,6 +118,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B77481D2BEF88A0004CE4E5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				1B9763B32BD3D348001BEB10 /* AuthViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		1B77481E2BEF88AF004CE4E5 /* Injured */ = {
+			isa = PBXGroup;
+			children = (
+				1B9763CC2BD3EF7A001BEB10 /* InjuredTabBarController.swift */,
+				1B9763C32BD3DB20001BEB10 /* InjuredViewController.swift */,
+				1B77481B2BE54554004CE4E5 /* OtherInformationViewController.swift */,
+			);
+			path = Injured;
+			sourceTree = "<group>";
+		};
+		1B77481F2BEF88BF004CE4E5 /* Rescuer */ = {
+			isa = PBXGroup;
+			children = (
+				1B9763C82BD3DCE6001BEB10 /* TabBarController.swift */,
+				1B9763C52BD3DB30001BEB10 /* RescuerViewController.swift */,
+			);
+			path = Rescuer;
+			sourceTree = "<group>";
+		};
+		1B7748202BEF88CB004CE4E5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1B9763CA2BD3DFDA001BEB10 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		1B7748212BEF88F1004CE4E5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1B7748152BE3AC9E004CE4E5 /* AlertModels.swift */,
+				1B7748132BE3AC69004CE4E5 /* AlertManager.swift */,
+				1B9D6E102BDD3E9200E63C6E /* Helpers */,
+				1B9D6E022BD6540E00E63C6E /* Services */,
+				1B9D6E052BD654FE00E63C6E /* FirebaseRepository.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		1B9763A32BD3D348001BEB10 = {
 			isa = PBXGroup;
 			children = (
@@ -139,12 +186,9 @@
 		1B9763AE2BD3D348001BEB10 /* DisasterAssistance */ = {
 			isa = PBXGroup;
 			children = (
-				1B7748152BE3AC9E004CE4E5 /* AlertModels.swift */,
-				1B7748132BE3AC69004CE4E5 /* AlertManager.swift */,
-				1B9D6E102BDD3E9200E63C6E /* Helpers */,
+				1B7748212BEF88F1004CE4E5 /* Core */,
 				1B9D6E0B2BD7A59700E63C6E /* Views */,
-				1B9D6E022BD6540E00E63C6E /* Services */,
-				1B9763C72BD3DB39001BEB10 /* ViewControllers */,
+				1B9763C72BD3DB39001BEB10 /* Scenes */,
 				1B9763AF2BD3D348001BEB10 /* AppDelegate.swift */,
 				1B9763B12BD3D348001BEB10 /* SceneDelegate.swift */,
 				1B9763B52BD3D348001BEB10 /* Main.storyboard */,
@@ -152,23 +196,19 @@
 				1B9763BA2BD3D349001BEB10 /* LaunchScreen.storyboard */,
 				1B9763BD2BD3D349001BEB10 /* Info.plist */,
 				1B9D6E072BD6A68A00E63C6E /* GoogleService-Info.plist */,
-				1B9D6E052BD654FE00E63C6E /* FirebaseRepository.swift */,
 			);
 			path = DisasterAssistance;
 			sourceTree = "<group>";
 		};
-		1B9763C72BD3DB39001BEB10 /* ViewControllers */ = {
+		1B9763C72BD3DB39001BEB10 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				1B9763B32BD3D348001BEB10 /* ViewController.swift */,
-				1B9763C32BD3DB20001BEB10 /* InjuredViewController.swift */,
-				1B9763C52BD3DB30001BEB10 /* RescuerViewController.swift */,
-				1B9763C82BD3DCE6001BEB10 /* TabBarController.swift */,
-				1B9763CC2BD3EF7A001BEB10 /* InjuredTabBarController.swift */,
-				1B9763CA2BD3DFDA001BEB10 /* ProfileViewController.swift */,
-				1B77481B2BE54554004CE4E5 /* OtherInformationViewController.swift */,
+				1B77481D2BEF88A0004CE4E5 /* Auth */,
+				1B77481E2BEF88AF004CE4E5 /* Injured */,
+				1B77481F2BEF88BF004CE4E5 /* Rescuer */,
+				1B7748202BEF88CB004CE4E5 /* Profile */,
 			);
-			path = ViewControllers;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		1B9D6E022BD6540E00E63C6E /* Services */ = {
@@ -358,7 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B9763B42BD3D348001BEB10 /* ViewController.swift in Sources */,
+				1B9763B42BD3D348001BEB10 /* AuthViewController.swift in Sources */,
 				1B9763CD2BD3EF7A001BEB10 /* InjuredTabBarController.swift in Sources */,
 				1B9763C92BD3DCE6001BEB10 /* TabBarController.swift in Sources */,
 				1B9763B02BD3D348001BEB10 /* AppDelegate.swift in Sources */,
@@ -527,11 +567,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4A6Q5M35JJ;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = CFXRPX9WGK;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DisasterAssistance/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Disaster Assistance";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для осуществления помощи, спасателям необходимо знать вашу геопозицию";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для осуществления помощи, спасателям необходимо знать вашу геопозицию";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -543,8 +584,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = urakov.DisasterAssistance;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.urakov.DisasterAssistance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -559,11 +600,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4A6Q5M35JJ;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = CFXRPX9WGK;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DisasterAssistance/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Disaster Assistance";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для осуществления помощи, спасателям необходимо знать вашу геопозицию";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для осуществления помощи, спасателям необходимо знать вашу геопозицию";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -575,8 +617,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = urakov.DisasterAssistance;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.urakov.DisasterAssistance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
