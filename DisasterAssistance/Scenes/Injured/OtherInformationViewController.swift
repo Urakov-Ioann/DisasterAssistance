@@ -52,11 +52,11 @@ extension OtherInformationViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag{
         case 0:
-            print(disasterTypes[row])
+            disasterType = disasterTypes[row]
         case 1:
-            print(row + 1)
+            numOfVictims = String(row + 1)
         case 2:
-            print(injures[row])
+            injureType = injures[row]
         default:
             break
         }

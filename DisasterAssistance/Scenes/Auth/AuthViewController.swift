@@ -23,6 +23,15 @@ class AuthViewController: UIViewController {
         injuredButton.layer.borderColor = UIColor.black.cgColor
         injuredButton.layer.borderWidth = 1
         passwordTextField.isSecureTextEntry = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc 
+    func tapGesture() {
+        loginTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
     }
 
 
